@@ -47,7 +47,7 @@ router.route('/posts')
 
         var post = new Post();		// create a new instance of the Post model
         post.message = req.body.message;  // set the posts message
-        post.posted = Date.now();   //set the posts Date
+        post.posted = Date.toLocaleString();   //set the posts Date
         post.vizzy = req.body.vizzy;
 
 
