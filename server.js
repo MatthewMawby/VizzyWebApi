@@ -63,7 +63,7 @@ router.route('/posts')
 
     // get all the posts (accessed at GET http://localhost:1729/api/posts)
     .get(function(req, res) {
-        Post.find({$query: {}, $orderby: {posted: -1}}).limit(25).exec(function(err, posts) {
+        Post.find({$query: {}}).limit(25).sort({posted: 'desc'}).exec(function(err, posts) {
             if (err)
                 res.send(err);
 
