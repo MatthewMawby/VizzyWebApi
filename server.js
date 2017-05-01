@@ -6,7 +6,7 @@ var express    = require('express');
 var bodyParser = require('body-parser');
 var app        = express();
 var morgan     = require('morgan');
-
+var fs = require('fs');
 // configure app
 app.use(morgan('dev')); // log requests to the console
 
@@ -37,6 +37,59 @@ router.use(function(req, res, next) {
 router.get('/', function(req, res) {
     res.json({ message: 'Welcome to the Vizzy API!' });
 });
+
+//get vizzy today!
+router.get('/mac', function(req, res) {
+    fs.readFile(__dirname+'/assets/mac.zip', (err, data) => {
+      if (err) throw err;
+      res.set('Content-Type', 'application/zip')
+      res.set('Content-Disposition', 'attachment; filename=mac.zip');
+      res.set('Content-Length', data.length);
+      res.end(data, 'binary');
+    });
+});
+
+router.get('/linux64', function(req, res) {
+    fs.readFile(__dirname+'/assets/linux64.zip', (err, data) => {
+      if (err) throw err;
+      res.set('Content-Type', 'application/zip')
+      res.set('Content-Disposition', 'attachment; filename=linux64.zip');
+      res.set('Content-Length', data.length);
+      res.end(data, 'binary');
+    });
+});
+
+router.get('/linux32', function(req, res) {
+    fs.readFile(__dirname+'/assets/linux32.zip', (err, data) => {
+      if (err) throw err;
+      res.set('Content-Type', 'application/zip')
+      res.set('Content-Disposition', 'attachment; filename=linux32.zip');
+      res.set('Content-Length', data.length);
+      res.end(data, 'binary');
+    });
+});
+
+router.get('/windows32', function(req, res) {
+    fs.readFile(__dirname+'/assets/windows32.zip', (err, data) => {
+      if (err) throw err;
+      res.set('Content-Type', 'application/zip')
+      res.set('Content-Disposition', 'attachment; filename=windows32.zip');
+      res.set('Content-Length', data.length);
+      res.end(data, 'binary');
+    });
+});
+
+router.get('/windows64', function(req, res) {
+    fs.readFile(__dirname+'/assets/windows64.zip', (err, data) => {
+      if (err) throw err;
+      res.set('Content-Type', 'application/zip')
+      res.set('Content-Disposition', 'attachment; filename=windows64.zip');
+      res.set('Content-Length', data.length);
+      res.end(data, 'binary');
+    });
+});
+
+
 
 // on routes that end in /posts
 // ----------------------------------------------------
